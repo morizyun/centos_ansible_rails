@@ -1,0 +1,17 @@
+---
+- hosts: web
+  vars:
+    environtment: production
+    ruby_version: 2.1.4
+    user_name: komji
+    postgres_user: study-meeting
+  roles:
+    - common
+    - swap
+    - rvm
+    - swap
+    - nginx
+    - postgresql
+    - rails
+    - newrelic
+    - iptables

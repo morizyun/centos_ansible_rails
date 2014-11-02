@@ -1,0 +1,27 @@
+---
+- name: move src folder
+  shell: cd /usr/local/src
+- name:  get PostgreSQL rpm
+  shell: wget -P /tmp http://yum.postgresql.org/9.2/redhat/rhel-6-x86_64/pgdg-centos92-9.2-6.noarch.rpm
+- name: set PostgreSQL rpm
+  sudo: true
+  shell: rpm -ivh /tmp/pgdg-centos92-9.2-6.noarch.rpm
+  ignore_errors: yes
+- name: install PostgreSQL
+  sudo: true
+  yum: name={{ item }} state=installed
+  with_items:
+    - postgresql92-server
+    - postgresql92-devel
+    - postgresql92-contrib
+- name: intilize PostgreSQL
+  sudo: true
+  shell: /etc/rc.d/init.d/postgresql-9.2 initdb
+- name: start PostgreSQL
+  sudo: true
+  shell: /etc/rc.d/init.d/postgresql-9.2 start
+- name: set auto start PostgreSQL
+  sudo: true
+  shell: chkconfig postgresql-9.2 on
+- name: set path to bashrc
+  shell: echo "export PATH=${PATH}:/usr/pgsql-9.2/bin" >> ~/.bashrc && source ~/.bashrc

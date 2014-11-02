@@ -1,0 +1,16 @@
+---
+- name: create SSL directory
+  register: mk_ssl_dir
+  sudo: true
+  shell: mkdir /etc/nginx/ssl
+  ignore_errors: yes
+- name: place SSL file for nginx
+  sudo: true
+  copy: src=server.crt dest=/etc/nginx/ssl/server.crt mode=0644 owner=root group=root
+  notify: restart nginx
+  when: mk_ssl_dir|success
+- name: place SSL file for nginx
+  sudo: true
+  copy: src=server.key dest=/etc/nginx/ssl/server.key mode=0644 owner=root group=root
+  notify: restart nginx
+  when: mk_ssl_dir|success

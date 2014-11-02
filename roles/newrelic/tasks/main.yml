@@ -1,0 +1,19 @@
+---
+# NewRelic
+- name: update newrelic package
+  sudo: true
+  yum: name=http://yum.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm state=present
+
+- name: install newrelic sysmond
+  sudo: true
+  yum: name={{ item }} state=installed
+  with_items:
+    - newrelic-sysmond
+
+- name: set licence key
+  sudo: true
+  command: nrsysmond-config --set license_key={{newrelic_license_key}}
+
+- name: start newrelic system monitoring daemon
+  sudo: true
+  command: /etc/init.d/newrelic-sysmond start

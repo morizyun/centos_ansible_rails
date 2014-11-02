@@ -1,0 +1,20 @@
+---
+- name: chmod /var
+  sudo: true
+  file: path=/var mode=0777
+- name: create rails folder
+  sudo: true
+  shell: mkdir -p /var/rails/
+  ignore_errors: yes
+- name: chmod /var/rails
+  sudo: true
+  file: path=/var/rails/ mode=0777
+- name: set folder owner
+  sudo: true
+  shell: chown {{ user_name }}.{{ user_name }} /var/rails/
+- name: set folder permission
+  sudo: true
+  shell: chmod 777 -R /var/rails/
+- name: install pg
+  shell: export PATH=${PATH}:/usr/pgsql-9.2/bin && gem install pg
+  ignore_errors: yes

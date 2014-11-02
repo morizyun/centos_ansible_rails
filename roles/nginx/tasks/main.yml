@@ -1,0 +1,23 @@
+---
+- name: install nginx
+  sudo: true
+  yum: name=nginx state=installed
+- name: ensure nginx/conf.d is empty
+  sudo: true
+  shell: rm -f /etc/nginx/conf.d/*
+- name: place nginx conf file
+  sudo: true
+  copy: src={{ environtment }}/nginx.conf dest=/etc/nginx/nginx.conf mode=0644 owner=root group=root
+  notify: restart nginx
+- name: create nginx/access.log & error.log
+  sudo: true
+  shell: touch /var/log/nginx/access.log && touch /var/log/nginx/error.log
+- name: set access log file permission
+  sudo: true
+  file: path=/var/log/nginx/access.log owner=nginx group=nginx mode=0644
+- name: set error log file permission
+  sudo: true
+  file: path=/var/log/nginx/error.log owner=nginx group=nginx mode=0644
+- name: set auto start
+  sudo: true
+  shell: chkconfig nginx on

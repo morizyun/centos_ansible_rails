@@ -1,0 +1,5 @@
+---
+- name: install mosh package
+  yum: name={{ item }} state=installed
+  with_items:
+    - mosh

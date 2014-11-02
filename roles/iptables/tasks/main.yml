@@ -1,0 +1,5 @@
+---
+- name: Set up iptables rules
+  sudo: true
+  copy: src=iptables dest=/etc/sysconfig/iptables
+  notify: restart iptables

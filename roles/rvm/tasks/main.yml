@@ -1,0 +1,11 @@
+---
+- name: get gpg key
+  shell: gpg2 --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
+# rvm installation
+- name: install rvm
+  shell: creates=/etc/profile.d/rvm.sh curl -sSL https://get.rvm.io | bash -s stable --ruby={{ ruby_version }} --gems=rails,bundler,pg
+- name: remove rvm warning
+  shell: export rvmsudo_secure_path=1
+- name: set .gemrc
+  shell: "echo 'gem: --no-rdoc --no-ri' > $HOME/.gemrc"
+
