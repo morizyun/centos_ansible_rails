@@ -25,3 +25,7 @@
   shell: chkconfig postgresql-9.2 on
 - name: set path to bashrc
   shell: echo "export PATH=${PATH}:/usr/pgsql-9.2/bin" >> ~/.bashrc && source ~/.bashrc
+- name: Copy pg_hba.conf
+  sudo: true
+  copy: src=pg_hba.conf dest=/var/lib/pgsql/9.2/data/
+  notify: restart postgresql-9.2

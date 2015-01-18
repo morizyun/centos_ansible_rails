@@ -1,8 +1,11 @@
-# Ansible code for basic Rails web server on CentOS 6.5
+short.works-ansible
+====
 
-_Description: This is Ansible code for building Nginx + ruby 2.1.4/RVM/Rails + PostgreSQL or MySQL on CentOS 6.5.
+Ansible code for ruby 2.2.0/rvm/PostgreSQL/Nginx in Amazon Linux or CentOS 6.5
 
-## Project Setup
+## Preparation
+
+Install Python/pip/Ansible
 
  1. `brew install python`
 
@@ -10,17 +13,22 @@ _Description: This is Ansible code for building Nginx + ruby 2.1.4/RVM/Rails + P
 
  3. `sudo pip install ansible`
 
- 4. `git clone https://github.com/morizyun/centos_ansible_rails.git`
+ 4. `git clone git@github.com:morizyun/short.works-ansible.git`
 
- 5. `cd centos-ansible-rails`
+ 5. `cd short.works-ansible`
 
- 6. Fill information;
-    - create ./hosts_production file like `[web] IP_ADDRESS ansible_ssh_user=USER_NAME ansible_connection=ssh ansible_ssh_private_key_file=~/ssh/path/to` 
-    - HOST_NAME in roles/nginx/files/production/nginx.conf
-    - vars in ./playbook_production
+## Usage
 
- 7. `export ANSIBLE_HOSTS=./hosts_production`
+### Production
 
- 8. 
-    - no sudo password: `ansible-playbook ./playbook_production.yml`
-    - having sudo password: `ansible-playbook ./playbook_production.yml -K`
+ 1. `export ANSIBLE_HOSTS=./ansible/hosts_production`
+
+ 2. `ansible-playbook ./ansible/playbook_production.yml -K`
+ 
+ 3. type `passw0rd` in Password
+ 
+ 3. set rails-project to `/var/rails/`
+
+## Basic Information
+
+1. PostgreSQL ROOT PASS : ``(nothing)

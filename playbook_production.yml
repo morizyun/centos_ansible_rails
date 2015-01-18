@@ -1,17 +1,18 @@
 ---
 - hosts: web
   vars:
+    hostname: HOST_NAME
     environtment: production
-    ruby_version: 2.1.4
-    user_name: komji
-    postgres_user: study-meeting
+    ruby_version: 2.2.0
+    user_name: USER_NAME
+    postgres_user: POSTGRES_USER_NAME
   roles:
     - common
     - swap
+    - postgresql
     - rvm
     - swap
     - nginx
-    - postgresql
     - rails
     - newrelic
     - iptables
