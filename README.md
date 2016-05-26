@@ -1,4 +1,4 @@
-short.works-ansible
+centos_ansible_rails
 ====
 
 Ansible code for ruby 2.2.0/rvm/PostgreSQL/Nginx in Amazon Linux or CentOS 6.5
@@ -13,9 +13,9 @@ Install Python/pip/Ansible
 
  3. `sudo pip install ansible`
 
- 4. `git clone git@github.com:morizyun/short.works-ansible.git`
+ 4. `git clone git@github.com:morizyun/centos_ansible_rails.git`
 
- 5. `cd short.works-ansible`
+ 5. `cd centos_ansible_rails`
 
 ## Usage
 
